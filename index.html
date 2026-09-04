@@ -35,7 +35,7 @@
             </svg>
         </div>
         <h1 class="brand-title">XM IA</h1>
-        <span class="model-badge">Active Model: XM1 Free Cloud</span>
+        <span class="model-badge">Active Model: XM1 Cloud Router</span>
     </header>
 
     <div class="chat-container" id="chat">
@@ -48,6 +48,8 @@
     </div>
 
     <script>
+        const BACKEND_URL = "https://YOUR_RENDER_URL.onrender.com/api/chat";
+
         async function sendMessage() {
             const input = document.getElementById('userInput');
             const chat = document.getElementById('chat');
@@ -64,26 +66,20 @@
 
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot';
-            botMsg.innerText = 'XM1 is processing...';
+            botMsg.innerText = 'XM1 is thinking...';
             chat.appendChild(botMsg);
 
             try {
-                const response = await fetch("https://text.pollinations.ai/", {
+                const response = await fetch(BACKEND_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        messages: [
-                            { role: "system", content: "You are XM1, a professional cloud AI model for XM IA platform. Answer clearly in the user language." },
-                            { role: "user", content: prompt }
-                        ],
-                        model: "openai"
-                    })
+                    body: JSON.stringify({ prompt: prompt })
                 });
 
-                const text = await response.text();
-                botMsg.innerText = text || "No response received.";
+                const data = await response.json();
+                botMsg.innerText = data.response || data.error || "Error reading response.";
             } catch (err) {
-                botMsg.innerText = "Connection Error: Unable to reach XM1 Cloud.";
+                botMsg.innerText = "Connection Error: Backend server unreachable.";
             }
 
             chat.scrollTop = chat.scrollHeight;
