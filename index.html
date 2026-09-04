@@ -14,7 +14,7 @@
         .model-badge { display: inline-block; margin-top: 5px; padding: 4px 12px; background: rgba(0, 242, 254, 0.1); border: 1px solid rgba(0, 242, 254, 0.3); color: #00f2fe; border-radius: 12px; font-size: 0.8rem; font-weight: 600; }
         .chat-container { width: 100%; max-width: 700px; flex-grow: 1; margin: 20px 0; display: flex; flex-direction: column; background: #0b0c10; border: 1px solid #1f293d; border-radius: 16px; padding: 20px; overflow-y: auto; max-height: 60vh; }
         .message { margin-bottom: 15px; line-height: 1.6; font-size: 0.95rem; }
-        .message.bot { color: #e5e7eb; background: #131722; padding: 12px 16px; border-radius: 12px; border-left: 3px solid #00f2fe; }
+        .message.bot { color: #e5e7eb; background: #131722; padding: 12px 16px; border-radius: 12px; border-left: 3px solid #00f2fe; white-space: pre-wrap; }
         .message.user { color: #00f2fe; text-align: right; background: #09131a; padding: 10px 14px; border-radius: 12px; align-self: flex-end; }
         .input-box { width: 100%; max-width: 700px; display: flex; gap: 10px; }
         input[type="text"] { flex-grow: 1; padding: 14px 18px; background: #0b0c10; border: 1px solid #1f293d; border-radius: 12px; color: #fff; font-size: 1rem; outline: none; }
@@ -35,13 +35,11 @@
             </svg>
         </div>
         <h1 class="brand-title">XM IA</h1>
-        <span class="model-badge">Active Model: XM1 Cloud Router</span>
+        <span class="model-badge">Active Model: XM1 Free Cloud</span>
     </header>
 
     <div class="chat-container" id="chat">
-        <div class="message bot">
-            Welcome to <strong>XM IA</strong>. I am <strong>XM1</strong>, your cloud-based AI assistant. How can I help you today?
-        </div>
+        <div class="message bot">Welcome to <strong>XM IA</strong>. I am <strong>XM1</strong>, your cloud AI assistant. How can I help you today?</div>
     </div>
 
     <div class="input-box">
@@ -50,8 +48,6 @@
     </div>
 
     <script>
-        const API_KEY = "gsk_YOUR_KEY";
-
         async function sendMessage() {
             const input = document.getElementById('userInput');
             const chat = document.getElementById('chat');
@@ -68,33 +64,26 @@
 
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot';
-            botMsg.innerText = 'XM1 is thinking...';
+            botMsg.innerText = 'XM1 is processing...';
             chat.appendChild(botMsg);
 
             try {
-                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                const response = await fetch("https://text.pollinations.ai/", {
                     method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${API_KEY}`,
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        model: "llama-3.3-70b-versatile",
                         messages: [
-                            { role: "system", content: "You are XM1, a smart AI assistant for XM IA platform. Answer politely and accurately in the user's language." },
+                            { role: "system", content: "You are XM1, a professional cloud AI model for XM IA platform. Answer clearly in the user language." },
                             { role: "user", content: prompt }
-                        ]
+                        ],
+                        model: "openai"
                     })
                 });
 
-                const data = await response.json();
-                if (data.choices && data.choices[0]) {
-                    botMsg.innerText = data.choices[0].message.content;
-                } else {
-                    botMsg.innerText = "API Key Error: Please insert a valid Groq API key.";
-                }
+                const text = await response.text();
+                botMsg.innerText = text || "No response received.";
             } catch (err) {
-                botMsg.innerText = "Cloud Connection Error. Please check network.";
+                botMsg.innerText = "Connection Error: Unable to reach XM1 Cloud.";
             }
 
             chat.scrollTop = chat.scrollHeight;
