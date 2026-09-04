@@ -3,96 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolf Tech - المنصة</title>
+    <title>XM IA - Cloud AI Platform</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
         body {
-            background-color: #08080c;
-            color: #ffffff;
+            background-color: #050508;
+            color: #f3f4f6;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            text-align: center;
             padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
         }
         .logo-box {
-            width: 150px;
-            height: 150px;
-            background: #0f1015;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: #0b0c10;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px solid #00f2fe;
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.35);
-            margin-bottom: 25px;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
         }
         .logo-box svg {
-            width: 90px;
-            height: 90px;
+            width: 70px;
+            height: 70px;
             fill: none;
             stroke: #00f2fe;
             stroke-width: 2.5;
             stroke-linejoin: round;
             stroke-linecap: round;
-            filter: drop-shadow(0 0 8px #00f2fe);
+            filter: drop-shadow(0 0 6px #00f2fe);
         }
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 12px;
+        .brand-title {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
             background: linear-gradient(45deg, #00f2fe, #4facfe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
         }
-        p {
-            font-size: 1.1rem;
-            color: #a0a5b5;
-            max-width: 500px;
-            line-height: 1.6;
+        .tagline {
+            font-size: 1.15rem;
+            color: #9ca3af;
+            margin-bottom: 30px;
+            line-height: 1.5;
         }
-        .btn {
-            margin-top: 30px;
-            padding: 12px 32px;
-            border: none;
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            color: #00f2fe;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+        .cta-btn {
+            display: inline-block;
+            width: 100%;
+            max-width: 280px;
+            padding: 14px 28px;
             background: linear-gradient(45deg, #00f2fe, #0072ff);
-            color: #fff;
+            color: #ffffff;
+            font-weight: 700;
             font-size: 1rem;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
+            text-decoration: none;
+            border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
-            transition: 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .btn:hover {
+        .cta-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.45);
         }
     </style>
 </head>
 <body>
 
-    <div class="logo-box">
-        <!-- أيقونة الذئب النيون المستمدة من التنسيق المضيء -->
-        <svg viewBox="0 0 100 100">
-            <polygon points="50,15 35,35 20,25 30,50 15,65 35,70 50,90 65,70 85,65 70,50 80,25 65,35" />
-            <polyline points="35,35 50,45 65,35" />
-            <polyline points="30,50 50,60 70,50" />
-            <circle cx="40" cy="40" r="2.5" fill="#00f2fe" />
-            <circle cx="60" cy="40" r="2.5" fill="#00f2fe" />
-        </svg>
+    <div class="container">
+        <div class="badge">Next-Gen Cloud AI API</div>
+        
+        <div class="logo-box">
+            <svg viewBox="0 0 100 100">
+                <polygon points="50,15 35,35 20,25 30,50 15,65 35,70 50,90 65,70 85,65 70,50 80,25 65,35" />
+                <polyline points="35,35 50,45 65,35" />
+                <polyline points="30,50 50,60 70,50" />
+                <circle cx="40" cy="40" r="2.5" fill="#00f2fe" />
+                <circle cx="60" cy="40" r="2.5" fill="#00f2fe" />
+            </svg>
+        </div>
+
+        <h1 class="brand-title">XM IA</h1>
+        <p class="tagline">بنية تحتية سحابية فائقة السرعة لخدمات الذكاء الاصطناعي وربط الـ API للمطورين.</p>
+
+        <a href="#docs" class="cta-btn">طلب مفتاح الـ API</a>
     </div>
-
-    <h1>مرحباً بك في منصة الذئب</h1>
-    <p>واجهة مضيئة ومظلمة مصممة بالكامل من التيرمينال عبر GitHub Pages.</p>
-
-    <button class="btn">استكشف المزيد</button>
 
 </body>
 </html>
